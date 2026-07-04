@@ -2,3 +2,15 @@ venv/
 .venv
 pyproject.toml
 *.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+*.env
+local_settings.py
+media/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db

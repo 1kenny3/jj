@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+<div class="container my-5">
+    
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 border-bottom pb-3 gap-3">
+        <div class="d-flex align-items-center gap-3">
+            <h2 class="fw-bold text-dark m-0">Публикации</h2>
+            <span class="badge bg-primary rounded-pill fs-6 px-3 py-2">
+                Всего постов: {{ count }}
+            </span>
+        </div>
+
+        <form method="get" action="" class="col-12 col-md-5 col-lg-4 p-0">
+            <div class="input-group">
+                <input type="text" 
+                       name="q" 
+                       class="form-control" 
+                       placeholder="Поиск публикаций..." 
+                       value="{{ request.GET.q|default:'' }}">
+                <button class="btn btn-primary" type="submit">Найти</button>
+                
+                {% if request.GET.q %}
+                    <a href="{{ request.path }}" class="btn btn-outline-secondary" title="Сбросить поиск">✕</a>
+                {% endif %}
+            </div>
+        </form>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for post in posts %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0 card-hover">
+                
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="card-img-top custom-card-img" alt="{{ post.title }}">
+                {% else %}
+                    <img src="{% static 'default.png' %}" class="card-img-top custom-card-img" alt="{{ post.title }}">
+                {% endif %}
+
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-1 text-warning" style="font-size: 0.9rem;" title="Рейтинг: {{ post.rate }} из 5">
+                        {{ post.get_stars }} <span class="text-muted">({{ post.rate }}/5)</span>
+                    </div>
+
+                    <h5 class="card-title fw-bold text-dark mb-2">{{ post.title }}</h5>
+                    <p class="card-text text-secondary flex-grow-1">
+                        {{ post.content|truncatewords:12 }}
+                    </p>
+                    <a href="#" class="btn btn-outline-primary w-100 mt-3 fw-medium">
+                        Читать полностью
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <p class="text-muted fs-5">
+                {% if request.GET.q %}
+                    По запросу «{{ request.GET.q }}» ничего не найдено.
+                {% else %}
+                    Здесь пока ничего нет. Добавьте первый пост!
+                {% endif %}
+            </p>
+            {% if request.GET.q %}
+                <a href="{{ request.path }}" class="btn btn-sm btn-secondary mt-2">Назад к списку</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    /* Фиксируем высоту картинок, чтобы сетка не ломалась, и аккуратно их обрезаем */
+    .custom-card-img {
+        height: 200px;
+        object-fit: cover;
+    }
+    
+    /* Эффект плавного увеличения при наведении на карточку */
+    .card-hover {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+</style>
+{% endblock %}
