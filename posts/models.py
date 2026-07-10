@@ -1,4 +1,6 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+
 
 # Create your models here.
 class Post(models.Model):
@@ -19,6 +21,3 @@ class Post(models.Model):
 
     def get_stars(self):
         return "⭐" * self.rate
-
-
- 
