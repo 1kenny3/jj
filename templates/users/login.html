@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+
+        <div class="col-md-6 col-lg-5">
+
+            <div class="card shadow-lg border-0 rounded-4">
+
+                <div class="card-body p-5">
+
+                    <h2 class="text-center fw-bold mb-4">
+                        Авторизация
+                    </h2>
+
+                    {% if form.errors %}
+                        <div class="alert alert-danger">
+                            Неверное имя пользователя или пароль.
+                        </div>
+                    {% endif %}
+
+                    <form method="post">
+
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label class="form-label">
+                                Имя пользователя
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                name="username"
+                                placeholder="Введите имя пользователя"
+                                value="{{ request.POST.username }}"
+                            >
+
+                            {% for error in form.username.errors %}
+                                <div class="text-danger mt-1">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">
+                                Пароль
+                            </label>
+
+                            <input
+                                type="password"
+                                class="form-control"
+                                name="password"
+                                placeholder="Введите пароль"
+                            >
+
+                            {% for error in form.password.errors %}
+                                <div class="text-danger mt-1">
+                                    {{ error }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-lg">
+                                Войти
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

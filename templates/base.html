@@ -1,116 +1,506 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <!-- Bootstrap Icons (для иконок в футере) -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <title>document</title>
+
+    <!-- bootstrap 5 css -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    >
+
+    <!-- bootstrap icons -->
+    <link 
+        rel="stylesheet" 
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    >
+
 </head>
-<!-- Классы d-flex flex-column min-vh-100 прижимают футер к низу страницы -->
+
+
 <body class="d-flex flex-column min-vh-100">
 
-    <!-- Верхний Навбар -->
-    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
-      <div class="container-fluid">
-        <a class="navbar-brand fw-bold" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+
+<!-- верхний navbar -->
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+
+    <div class="container-fluid">
+
+
+        <a class="navbar-brand fw-bold" href="#">
+            my blog 🚀
+        </a>
+
+
+
+        <button 
+            class="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarsupportedcontent">
+
+            <span class="navbar-toggler-icon"></span>
+
         </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-            <button class="btn btn-outline-success" type="submit">Search</button>
-          </form>
-        </div>
-      </div>
-    </nav>
 
-    <!-- Основной контент страницы -->
-    <main class="container my-5">
-        {% block content %}
-        <!-- Здесь будет ваш контент -->
-        {% endblock %}
-    </main>
 
-    <!-- Красивый и современный футер (mt-auto автоматически двигает его вниз) -->
-    <footer class="bg-dark text-light mt-auto pt-5 pb-3">
-        <div class="container">
-            <div class="row g-4">
-                <!-- О компании -->
-                <div class="col-12 col-md-4">
-                    <h5 class="text-uppercase fw-bold text-warning mb-3">Название Проекта</h5>
-                    <p class="text-secondary">Мы создаем современные и удобные веб-решения для вашего бизнеса. Высокое качество, адаптивный дизайн и надежность.</p>
-                </div>
-                
-                <!-- Ссылки -->
-                <div class="col-6 col-md-4 ps-md-5">
-                    <h5 class="text-uppercase fw-bold text-warning mb-3">Навигация</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none hover-link">Главная</a></li>
-                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none hover-link">О нас</a></li>
-                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none hover-link">Услуги</a></li>
-                        <li class="mb-2"><a href="#" class="text-secondary text-decoration-none hover-link">Контакты</a></li>
+
+        <div class="collapse navbar-collapse" id="navbarsupportedcontent">
+
+
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">
+                        главная
+                    </a>
+                </li>
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        посты
+                    </a>
+                </li>
+
+
+
+                <li class="nav-item dropdown">
+
+
+                    <a 
+                        class="nav-link dropdown-toggle" 
+                        href="#" 
+                        role="button" 
+                        data-bs-toggle="dropdown">
+
+                        разделы
+
+                    </a>
+
+
+                    <ul class="dropdown-menu">
+
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                новости
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                статьи
+                            </a>
+                        </li>
+
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                другое
+                            </a>
+                        </li>
+
+
                     </ul>
-                </div>
 
-                <!-- Контакты и Соцсети -->
-                <div class="col-6 col-md-4">
-                    <h5 class="text-uppercase fw-bold text-warning mb-3">Контакты</h5>
-                    <p class="text-secondary mb-1"><i class="bi bi-geo-alt-fill me-2"></i> г. Москва, ул. Ленина, 1</p>
-                    <p class="text-secondary mb-3"><i class="bi bi-envelope-fill me-2"></i> info@example.com</p>
-                    <div class="d-flex gap-3 fs-4">
-                        <a href="#" class="text-light"><i class="bi bi-telegram"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-vk"></i></a>
-                        <a href="#" class="text-light"><i class="bi bi-github"></i></a>
-                    </div>
-                </div>
-            </div>
 
-            <hr class="hr text-secondary my-4">
+                </li>
 
-            <!-- Копирайт -->
-            <div class="row">
-                <div class="col text-center text-secondary style="font-size: 0.9rem;">
-                    &copy; 2026 Все права защищены. Разработано с любовью.
-                </div>
-            </div>
+
+            </ul>
+
+
+
+
+
+            <!-- пользователь -->
+
+            <ul class="navbar-nav">
+
+
+                {% if user.is_authenticated %}
+
+
+                <li class="nav-item dropdown">
+
+
+                    <a 
+                        class="nav-link dropdown-toggle d-flex align-items-center gap-2"
+                        href="#"
+                        role="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+
+
+                        <!-- круглый аватар -->
+
+                        <div 
+                            class="rounded-circle bg-primary text-white 
+                            d-flex align-items-center justify-content-center fw-bold"
+                            style="width:38px;height:38px;"
+                        >
+
+                            {{ user.username|first|upper }}
+
+                        </div>
+
+
+
+                        <span class="fw-semibold">
+
+                            {{ user.username }}
+
+                        </span>
+
+
+                    </a>
+
+
+
+
+
+                    <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+
+
+                        <li>
+
+                            <h6 class="dropdown-header">
+
+                                {{ user.username }}
+
+                            </h6>
+
+                        </li>
+
+
+
+                        <li>
+
+                            <a class="dropdown-item" href="#">
+
+                                <i class="bi bi-person me-2"></i>
+
+                                профиль
+
+                            </a>
+
+                        </li>
+
+
+
+                        <li>
+
+                            <a class="dropdown-item" href="#">
+
+                                <i class="bi bi-gear me-2"></i>
+
+                                настройки
+
+                            </a>
+
+                        </li>
+
+
+
+                        <li>
+
+                            <hr class="dropdown-divider">
+
+                        </li>
+
+
+
+
+                        <li>
+
+    <form method="post" action="{% url 'logout' %}">
+
+        {% csrf_token %}
+
+        <button 
+            type="submit"
+            class="dropdown-item text-danger"
+        >
+
+            <i class="bi bi-box-arrow-right me-2"></i>
+
+            выйти
+
+        </button>
+
+
+    </form>
+
+</li>
+
+
+                    </ul>
+
+
+
+                </li>
+
+
+
+                {% else %}
+
+
+
+                <li class="nav-item">
+
+                    <a 
+                        class="btn btn-primary rounded-pill px-4"
+                href="{% url 'login'%}">
+
+                        войти
+
+                    </a>
+
+                </li>
+
+
+
+                {% endif %}
+
+
+
+            </ul>
+
+
+
+
+
+            <!-- поиск -->
+
+            <form class="d-flex ms-3" role="search">
+
+
+                <input 
+                    class="form-control me-2" 
+                    type="search" 
+                    placeholder="поиск"
+                >
+
+
+                <button class="btn btn-outline-success">
+
+                    найти
+
+                </button>
+
+
+            </form>
+
+
+
         </div>
-    </footer>
 
-    <!-- Дополнительные стили для эффекта наведения (опционально) -->
-    <style>
-        .hover-link:hover {
-            color: #ffc107 !important; /* Цвет text-warning при наведении */
-            transition: color 0.2s ease-in-out;
-        }
-    </style>
+    </div>
 
-    <!-- Bootstrap 5 JS Bundle (включает Popper.js, скрипты дублировать не нужно) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</nav>
+
+
+
+
+
+<!-- основной контент -->
+
+<main class="container my-5 flex-grow-1">
+
+
+    {% block content %}
+
+    {% endblock %}
+
+
+</main>
+
+
+
+
+
+
+<!-- footer -->
+
+
+<footer class="bg-dark text-light mt-auto pt-5 pb-3">
+
+
+    <div class="container">
+
+
+        <div class="row g-4">
+
+
+
+            <div class="col-12 col-md-4">
+
+
+                <h5 class="text-uppercase fw-bold text-warning">
+
+                    название проекта
+
+                </h5>
+
+
+                <p class="text-secondary">
+
+                    мы создаем современные веб-приложения
+                    на django.
+
+                </p>
+
+
+            </div>
+
+
+
+
+
+            <div class="col-6 col-md-4">
+
+
+                <h5 class="text-uppercase fw-bold text-warning">
+
+                    навигация
+
+                </h5>
+
+
+                <ul class="list-unstyled">
+
+
+                    <li class="mb-2">
+                        <a href="#" class="text-secondary text-decoration-none hover-link">
+                            главная
+                        </a>
+                    </li>
+
+
+                    <li class="mb-2">
+                        <a href="#" class="text-secondary text-decoration-none hover-link">
+                            о нас
+                        </a>
+                    </li>
+
+
+                    <li class="mb-2">
+                        <a href="#" class="text-secondary text-decoration-none hover-link">
+                            контакты
+                        </a>
+                    </li>
+
+
+                </ul>
+
+
+            </div>
+
+
+
+
+
+            <div class="col-6 col-md-4">
+
+
+                <h5 class="text-uppercase fw-bold text-warning">
+
+                    контакты
+
+                </h5>
+
+
+                <p class="text-secondary">
+
+                    <i class="bi bi-envelope me-2"></i>
+
+                    info@example.com
+
+                </p>
+
+
+
+                <div class="d-flex gap-3 fs-4">
+
+
+                    <a href="#" class="text-light">
+                        <i class="bi bi-telegram"></i>
+                    </a>
+
+
+                    <a href="#" class="text-light">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+
+
+        <hr class="text-secondary my-4">
+
+
+
+        <div class="text-center text-secondary" style="font-size:0.9rem;">
+
+
+            © 2026 все права защищены.
+
+
+        </div>
+
+
+    </div>
+
+
+</footer>
+
+
+
+
+
+<style>
+
+.hover-link:hover {
+
+    color: #ffc107 !important;
+
+    transition: 0.2s;
+
+}
+
+</style>
+
+
+
+
+
+<script 
+src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
 </body>
+
 </html>

@@ -16,10 +16,12 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.contrib.auth import logout
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from posts.views import about, home, post_list, kenny, post_create
+from users.views import login_view, register_view, logout_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -28,6 +30,9 @@ urlpatterns = [
     path("posts/", post_list, name="post_list"),
     path("kenny/", kenny),
     path("posts/create", post_create, name="post_create"),
+    path("user/login", login_view, name="login"),
+    path("user/register/", register_view, name="register"),
+    path("logout", logout_view, name="logout"),
 ]
 
 if settings.DEBUG:

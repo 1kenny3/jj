@@ -1,5 +1,6 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -10,6 +11,12 @@ class Post(models.Model):
     crated_at = models.DateTimeField(auto_now=True)
     image = models.ImageField()
     is_published = models.BooleanField(default=True, verbose_name="Опубликовано")
+    user = models.ForeignKey(
+        User,
+        models.CASCADE,
+        null=True,
+        blank=True,
+    )
 
     class Meta:
         ordering = ["-crated_at"]

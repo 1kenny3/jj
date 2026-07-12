@@ -1,4 +1,5 @@
 from django.http.response import HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from posts.form import PostForm
 from posts.models import Post
@@ -22,7 +23,7 @@ def about(request):
 def post_list(request: HttpRequest):
     q = request.GET.get("q", None)
 
-    posts = Post.objects.filter(is_published=True)
+    posts = Post.objects.filter(is_published=True).select_related("user")
 
     if q:
         posts = posts.filter(title__icontains=q)
@@ -34,12 +35,14 @@ def post_list(request: HttpRequest):
     return render(request, "posts/post_list.html", context_obh)
 
 
+@login_required
 def post_create(request: HttpRequest):
     post_form = PostForm()
-    if request.method.lower() == "post":
+    if request.method == "POST":
         post = PostForm(request.POST, request.FILES)
         if post.is_valid():
             post_object = Post(**post.cleaned_data)
+            post_object.user = request.user
             post_object.save()
             return redirect("post_list")
         for error in post.errors:
@@ -55,4 +58,3 @@ def post_create(request: HttpRequest):
 
 def kenny(request):
     return HttpResponse("<h1>они убили кенни</h1>")
-
