@@ -28,3 +28,21 @@ class Post(models.Model):
 
     def get_stars(self):
         return "⭐" * self.rate
+
+
+class Comment(models.Model):
+    content = models.CharField()
+    create_at = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="likes")
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="likes")
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ("user", "post")
+        verbose_name = "Лайк"
+        verbose_name_plural = "Лайки"

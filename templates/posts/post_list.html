@@ -10,7 +10,6 @@
             <span class="badge bg-primary rounded-pill fs-6 px-3 py-2">
                 Всего постов: {{ count }}
             </span>
-            <!-- Кнопка «Создать пост» -->
             <a href="{% url 'post_create' %}" class="btn btn-success d-inline-flex align-items-center gap-2 rounded-pill shadow-sm">
                 <i class="bi bi-plus-lg"></i> Создать пост
             </a>
@@ -55,10 +54,12 @@
                     </div>
 
                     <h5 class="card-title fw-bold text-dark mb-2">{{ post.title }}</h5>
+                    
                     <p class="card-text text-secondary flex-grow-1">
-                       User: {{ post.user.username|truncatewords:12 }}
+                       Автор: {{ post.user.username|default:"Аноним" }}
                     </p>
-                    <a href="#" class="btn btn-outline-primary w-100 mt-3 fw-medium">
+                    
+                    <a href="{% url 'post_detail' pk=post.pk %}" class="btn btn-outline-primary w-100 mt-3 fw-medium">
                         Читать полностью
                     </a>
                 </div>

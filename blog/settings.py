@@ -121,3 +121,30 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static",]
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'sql_formatter': {
+            # Формат вывода: [Время] Текст запроса
+            'format': '\033[34m[%(asctime)s]\033[0m %(message)s',
+            'datefmt': '%H:%M:%S',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'sql_formatter',
+        },
+    },
+    'loggers': {
+        'django.db.backends': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    },
+}

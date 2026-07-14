@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="mb-4">Редактирование: {{ post.title }}</h2>
+            
+            <form id="editPostForm" class="shadow-sm p-4 bg-white rounded border">
+                {% csrf_token %}
+                
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Заголовок</label>
+                    <input type="text" 
+                           name="title" 
+                           class="form-control" 
+                           value="{{ post.title }}" 
+                           placeholder="Введите заголовок поста">
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Рейтинг поста (Звёзд)</label>
+                    <select name="rate" class="form-select">
+                        <option value="1" {% if post.rate == 1 %}selected{% endif %}>⭐ (1)</option>
+                        <option value="2" {% if post.rate == 2 %}selected{% endif %}>⭐⭐ (2)</option>
+                        <option value="3" {% if post.rate == 3 %}selected{% endif %}>⭐⭐⭐ (3)</option>
+                        <option value="4" {% if post.rate == 4 %}selected{% endif %}>⭐⭐⭐⭐ (4)</option>
+                        <option value="5" {% if post.rate == 5 %}selected{% endif %}>⭐⭐⭐⭐⭐ (5)</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Текст поста</label>
+                    <textarea name="content" 
+                              class="form-control" 
+                              rows="6" 
+                              placeholder="Напишите text поста...">{{ post.content }}</textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold">Изображение поста</label>
+                    {% if post.image %}
+                        <div class="mb-2 small text-muted">Текущий файл: <a href="{{ post.image.url }}" target="_blank">{{ post.image.name }}</a></div>
+                    {% endif %}
+                    <input type="file" 
+                           name="image" 
+                           class="form-control" 
+                           accept="image/*">
+                </div>
+                
+                <div class="text-end mt-4">
+                    <a href="{% url 'post_detail' pk=post.id %}" class="btn btn-outline-secondary me-2 rounded-pill px-4">Отмена</a>
+                    <button type="submit" class="btn btn-primary rounded-pill px-4">Сохранить изменения</button>
+                </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('editPostForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+    const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+    // Отправляем POST запрос вместо PATCH
+    fetch(window.location.href, {
+        method: 'POST', 
+        headers: {
+            'X-CSRFToken': csrfToken,
+        },
+        body: formData
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = "{% url 'post_detail' pk=post.pk %}";
+        } else {
+            alert('Что-то пошло не так при сохранении...');
+        }
+    })
+    .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Ошибка соединения с сервером');
+    });
+});
+</script>
+{% endblock %}
